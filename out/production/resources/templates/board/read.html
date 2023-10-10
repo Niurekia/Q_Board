@@ -478,11 +478,13 @@
         update_btn.id = "update_btn";
         update_btn.className="reply_update_btn";
         update_btn.textContent="수정"
-        //댓글수정 폼
+
+        //댓글수정 폼(실시간으로 보이게 하려고 div로 변경함)
         var updateForm = document.createElement("div");
         updateForm.id="updateForm";
         updateForm.style.display = 'none';
 
+        //수정 버튼 클릭 시
         update_btn.addEventListener("click", function() {
 
             if(updateForm.style.display=='none') {
@@ -497,27 +499,28 @@
                 console.log("수정 취소 클릭");
             }
 
+            //수정 버튼 클릭시 수정내용 적을 텍스트영역
             var contents_area=document.createElement("textarea");
             contents_area.className="reply_text";
+            contents_area.style.width="300px";
+            contents_area.style.height="150px";
             contents_area.value=reply.content;
 
 
-
+            //댓글 저장 버튼
             var save_btn=document.createElement("button");
             save_btn.className="save_btn";
             save_btn.type="submit";
             save_btn.textContent="저장"
 
-            // var save_a = document.createElement("a");
-            // save_a.setAttribute("href","/board/reply/update?rno=" + reply.rno);
-            // save_btn.appendChild(save_a);
 
-            //저장 버튼 클릭시
+            //저장 버튼 클릭 시
             save_btn.addEventListener("click",function (){
                 console.log("댓글 저장 클릭")
 
-                //화면에 보이는 내용 변경
+                // 텍스트영역의 내용 댓글내용에 저장
                 reply.content=contents_area.value;
+                //화면에 보이는 내용 변경
                 contentsDiv.textContent = reply.content;
 
                 //변경된 내용 데이터베이스에 저장
