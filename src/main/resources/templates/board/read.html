@@ -508,18 +508,34 @@
             save_btn.type="submit";
             save_btn.textContent="저장"
 
+            // var save_a = document.createElement("a");
+            // save_a.setAttribute("href","/board/reply/update?rno=" + reply.rno);
+            // save_btn.appendChild(save_a);
+
+            //저장 버튼 클릭시
             save_btn.addEventListener("click",function (){
                 console.log("댓글 저장 클릭")
 
-                axios.request.post
+                //화면에 보이는 내용 변경
                 reply.content=contents_area.value;
                 contentsDiv.textContent = reply.content;
 
-                // var save_a = document.createElement("a");
-                // save_a.setAttribute("href","/board/reply/update?rno=" + reply.rno);
-                // save_btn.appendChild(save_a);
-                updateForm.style.display = 'none';
-                update_btn.textContent="수정";
+                //변경된 내용 데이터베이스에 저장
+                axios.post("/board/reply/update", {
+                    rno: reply.rno,
+                    content: reply.content
+                })
+                    .then(response => {
+                        console.log(response);
+                        if (response.status === 200) {
+                            updateForm.style.display = 'none';
+                            update_btn.textContent = "수정";
+
+                        }
+                    })
+                    .catch(error => console.error(error));
+
+
             });
 
 

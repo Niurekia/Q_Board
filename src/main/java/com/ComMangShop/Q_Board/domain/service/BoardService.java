@@ -237,9 +237,9 @@ public class BoardService {
     }
 
 
-    public void updateReply(Long rno,String content) {
-        Reply reply =  replyRepository.findById(rno).get();
-        reply.setContent(content);
+    public void updateReply(ReplyDto dto) {
+        Reply reply =  replyRepository.findById(dto.getRno()).get();
+        reply.setContent(dto.getContent());
         replyRepository.save(reply);
     }
 

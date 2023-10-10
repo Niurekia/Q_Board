@@ -5,6 +5,8 @@ import com.ComMangShop.Q_Board.domain.dto.ReplyDto;
 import com.ComMangShop.Q_Board.domain.service.BoardService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -73,29 +75,17 @@ public class BoardRestController {
     //-------------------
     //댓글수정
     //-------------------
-    @GetMapping("/reply/update/{rno}")
-    public void replyUpdate(Long rno, String content){
-        log.info("GET /board/reply/update rno " + rno);
 
-        boardService.updateReply(rno,content);
-
-//        Reply reply= boardService.updateReply();
-//
-//        ReplyDto dto= new ReplyDto();
-//        dto.setRno(reply.getRno());
-//        dto.setBno(bno);
-//        dto.setContent(reply.getContent());
-//        dto.setRegdate(reply.getRegdate());
-//        dto.setUsername(reply.getUsername());
-//        dto.setLikecount(reply.getLikecount());
-//        dto.setUnlikecount(reply.getUnlikecount());
-//
-//
-//        model.addAttribute("replyDto",dto);
-
-
+    @PostMapping("/reply/update")
+    public ResponseEntity<String> updateReply(@RequestBody ReplyDto replyDto) {
+        try {
+            // 수정된 내용을 데이터베이스에 업데이트
+            boardService.updateReply(replyDto);
+            return ResponseEntity.ok("댓글 수정 성공");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("댓글 수정에 실패");
+        }
     }
-
 
 
     
