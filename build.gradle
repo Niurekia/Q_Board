@@ -46,6 +46,33 @@ dependencies {
 	implementation 'org.hibernate.validator:hibernate-validator'
 	implementation 'javax.validation:validation-api'
 
+//SECURITY
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+
+	//OAUTH2
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	//RESTCONTROLLER ADDED
+	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
+	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.14.2'
+	implementation 'com.google.code.gson:gson:2.10.1'
+
+	//THYMELEAF ADDED
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+	//JSP VIEW TEMPLATE ADDED
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper' // 추가
+	implementation 'javax.servlet:jstl' // 추가
+
+	//MAIL
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
 
 
 }

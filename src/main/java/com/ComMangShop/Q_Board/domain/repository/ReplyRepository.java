@@ -19,11 +19,4 @@ public interface ReplyRepository extends JpaRepository<Reply,Long> {
     Long GetReplyCountByBnoDesc(@Param("bno") Long bno);
 
 
-    @Query("UPDATE Reply r SET r.content=:content, r.regdate=:regdate WHERE r.rno = :rno")
-    Integer updateReply(
-            @Param("content") String content,
-            @Param("regdate") String regdate
-
-    );
-
 }
