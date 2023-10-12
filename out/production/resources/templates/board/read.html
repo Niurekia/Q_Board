@@ -124,7 +124,7 @@
 
 
                     <div class="mb-3  w-50" >
-                        <a  class="btn btn-primary" th:href="@{/board/update(no=${boardDto.no})}">수정하기</a>
+                        <a  class="btn btn-primary update_btn" th:href="@{/board/update(no=${boardDto.no})}">수정하기</a>
                         <a  class="btn btn-primary delete_btn" th:data-no="${boardDto.no}" >삭제하기</a>
                         <a  th:href="@{/board/list(pageNo=${pageNo})}"  class="btn btn-primary">이전으로</a>
                     </div>
@@ -285,6 +285,14 @@
 <script src="/js/common.js"></script>
 
 <script>
+
+    /*<![CDATA[*/
+    var bno = [[${boardDto.no}]];
+    var writername = [[${boardDto.username}]];
+    let username = '[[${#authentication.name}]]';
+    /*]]>*/
+
+    const update_btn_el = document.querySelector('.update-btn');
     const delete_btn_el = document.querySelector('.delete_btn');
     delete_btn_el.addEventListener('click',function(){
         const no = delete_btn_el.dataset.no;
@@ -299,15 +307,20 @@
         .catch(error=>console.log(error));
     });
 
+
+    //권한 없을 시 게시글 수정, 삭제 버튼 숨김처리
+    if(username!=writername) {
+        update_btn_el.style.display = 'none';
+        delete_btn_el.style.display = 'none';
+    }
+
+
     //----------------------------------------------------------------
     //댓글 추가
     //----------------------------------------------------------------
     const reply_btn_el = document.querySelector('.reply_btn');
 
-     /*<![CDATA[*/
-            var bno = [[${boardDto.no}]];
-            let username = '[[${#authentication.name}]]';
-     /*]]>*/
+
 
 
     reply_btn_el.addEventListener('click',function(){
@@ -451,6 +464,7 @@
 
         // 댓글 수정 삭제 div
         var update_delete_div = document.createElement("div");
+        update_delete_div.style.display="none";
 
         var span1 = document.createElement("span");
         span1.className = "reply_username me-2";
@@ -612,17 +626,9 @@
         update_delete_div.appendChild(updateForm)
 
         //댓글 수정 삭제 버튼 role에 따라 숨김처리
-////////////////////////////////////////////////////////////////
-        /*
-        /위에서 기본 display를 hidden 으로 수정한 후
-         if(현재 계정 role==user){
-            if(현재 계정 role==reply.role){
-                update_a.style.display='block';
-                delete_a.style.display='block';
-            }
-         }else if(현재 계정 role=admin)
-            delete_a.style.display='block';
-         */
+        if(username==reply.username)
+            update_delete_div.style.display="block";
+
 
         //body에 update_delete_div
         bodyElement.appendChild(update_delete_div);
