@@ -108,7 +108,7 @@
                 <form action="/board/post" method="post" enctype="multipart/form-data">
                     <div class="mb-3 w-50">
                         <label for="exampleFormControlInput1" class="form-label">메일</label>&nbsp;&nbsp;<span class="msg" th:text="${username}"></span>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="username">
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="username" th:value="${#authentication.name}" readonly>
                     </div>
                     <div class="mb-3 w-50">
                         <label for="ex2" class="form-label">글제목</label>&nbsp;&nbsp;<span class="msg" th:text="${title}"></span>

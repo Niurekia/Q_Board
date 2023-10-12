@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>JOIN</h1>
+    <form name="joinform" action="/user/join" method="post" onsubmit="return false">
+        USERNAME : <input name="username"><br/>
+        PASSWORD : <input name="password" type="password"><br/>
+        EMAIL 	: <input name="email" ><br/>
+        <button onclick="isValid()">JOIN</button>
+    </form>
+    <script>
+        const isValid = ()=>{
+            const form = document.joinform;
+            if(form.username.value.trim()==""){
+                alert("USERNAME을 입력하세요.");
+                return;
+            }
+            if(form.password.value.trim()==""){
+                alert("PASSWORD을 입력하세요.");
+                return;
+            }
+            form.submit();
+        }
+    </script>
+</body>
+</html>

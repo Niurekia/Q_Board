@@ -306,6 +306,7 @@
 
      /*<![CDATA[*/
             var bno = [[${boardDto.no}]];
+            let username = '[[${#authentication.name}]]';
      /*]]>*/
 
 
@@ -313,7 +314,7 @@
         const reply_contents_el = document.querySelector('.reply_contents');
         console.log("BNO : ",bno);
 
-        axios.get("/board/reply/add?bno="+bno+"&contents="+reply_contents_el.value + "&username=user1234")
+        axios.get("/board/reply/add?bno="+bno+"&contents="+reply_contents_el.value + "&username="+username)
         .then(response=>{
             console.log(response);
 
@@ -349,7 +350,7 @@
 
         if(e.keyCode==13){
 
-                axios.get("/board/reply/add?bno="+bno+"&contents="+reply_contents_el.value + "&username=niurekia@knu.ac.kr")
+                axios.get("/board/reply/add?bno="+bno+"&contents="+reply_contents_el.value + "&username="+username)
                 .then(response=>{
                     console.log(response);
 
@@ -609,6 +610,19 @@
         update_delete_div.appendChild(update_a);
         update_delete_div.appendChild(delete_a);
         update_delete_div.appendChild(updateForm)
+
+        //댓글 수정 삭제 버튼 role에 따라 숨김처리
+////////////////////////////////////////////////////////////////
+        /*
+        /위에서 기본 display를 hidden 으로 수정한 후
+         if(현재 계정 role==user){
+            if(현재 계정 role==reply.role){
+                update_a.style.display='block';
+                delete_a.style.display='block';
+            }
+         }else if(현재 계정 role=admin)
+            delete_a.style.display='block';
+         */
 
         //body에 update_delete_div
         bodyElement.appendChild(update_delete_div);

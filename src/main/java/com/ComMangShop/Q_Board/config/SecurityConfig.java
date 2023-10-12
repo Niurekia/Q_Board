@@ -57,6 +57,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/board/list","/board/read").permitAll()
 				.antMatchers("/board/reply/list","/board/reply/count").permitAll()
 				.antMatchers("/board/post","/board/delete","/board/update").hasAnyRole("USER","ADMIN","MEMBER")
+				.antMatchers("/board/reply/update","/reply/thumbsup").hasAnyRole("USER","ADMIN","MEMBER")
+
 
 
 				.anyRequest().authenticated()									//나머지 URL은 모두 인증작업이 완료된 이후 접근가능
