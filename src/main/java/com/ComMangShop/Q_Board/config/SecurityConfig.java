@@ -46,9 +46,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	//----------------------------------------------------------------
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-	
+
 		http.csrf().disable();
-		
+
 		http
 			.authorizeRequests()
 				.antMatchers("/css/**","/js/**","/images/**").permitAll()
@@ -100,9 +100,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.userInfoEndpoint()
 				.userService(principalDetailsOAuth2Service);
 
-			
+
 	}
-	
+
 	//----------------------------------------------------------------
 	// 인증처리 함수
 	//----------------------------------------------------------------
@@ -123,17 +123,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //				.withUser("admin")
 //				.password(passwordEncoder().encode("1234"))
 //				.roles("ADMIN");
-		
+
 		auth.userDetailsService(principalDetailsOAuth2Service)
 			.passwordEncoder(passwordEncoder());
-		
+
 	}
-	
-	
+
+
 	//----------------------------------------------------------------
 	//BEANS
 	//----------------------------------------------------------------
-	
+
 	// BCryptPasswordEncoder Bean 등록
 	// 패스워드 검증에 사용
 	@Bean
@@ -152,7 +152,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 
-	
 
-	
+
+
 }
