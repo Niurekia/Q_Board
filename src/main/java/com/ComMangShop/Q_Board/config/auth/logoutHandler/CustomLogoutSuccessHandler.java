@@ -15,14 +15,14 @@ public class CustomLogoutSuccessHandler implements LogoutSuccessHandler{
 
 
 
-	private String kakaoClientId = "206caf77477fe5ba91dafb10da8d95d2";
+	private String kakaoClientId = "8b8e4c49e4db8b98eda1c8c870f9997b";
 	private String LOGOUT_REDIRECT_URI ="http://localhost:8080/login";
 
-	private String naverClientId ="myCONIrrsJHFIPcgl9OQ";
+	private String naverClientId ="iWxRisgDPMNwRx4erSlZ";
 
-	private String naverClientSecret="ngJQs03WkY";
+	private String naverClientSecret="vYXLXZuTg7";
 
-	private String googleAPIKEY = "141949035610-n9jkso1n0kebcgoj6luls6g206s1660u.apps.googleusercontent.com";
+	private String googleAPIKEY = "329227769971-5g6b035kmdi1otai1sviduttisholpme.apps.googleusercontent.com";
 
 	@Override
 	public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)

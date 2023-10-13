@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="">
+<html lang="en" xmlns:th="" xmlns:sec="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -58,13 +59,57 @@
             -->
             <form class="d-flex" action="/board/list">
                 <select name="type"  class="form-select me-2" style="width:120px;">
-                    <option value="title" selected>TITLE</option>
-                    <option value="username">WRITER</option>
-                    <option value="content">CONTENTS</option>
+                    <option value="title" selected>제목</option>
+                    <option value="username">글쓴이</option>
+                    <option value="content">내용</option>
                 </select>
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="width:150px;" name="keyword">
                 <button class="btn btn-outline-light" type="submit">Search</button>
             </form>
+
+
+            <!--
+            인증 버튼 추가
+             -->
+            <style>
+                .header--nav a{text-decoration:none;color:white;}
+            </style>
+            <!--인증된 경우 -->
+            <div  class="d-flex me-2" sec:authorize="isAuthenticated()"  style="display:flex;align-items:center;justify-content:right;font-size:0.8rem;width:800px;">
+                <div style="width:300px;text-align:right;">
+                    <span sec:authentication="principal.username" class="text-light"></span> <span class="text-light">님 </span>
+                </div>
+                &nbsp;&nbsp;
+                <div style="display:flex;align-items:center;justify-content:right;width:100px;">
+                    <a href="/user/mypage">나의 정보</a>
+                </div>
+                <form class="d-flex " action="/logout"  onSubmit="return false">
+                    <button  class="btn text-light"  style="width:120px; font-size:0.8rem;" onclick="logoutAndRedirect()">로그아웃</button>
+                </form>
+            </div>
+            <div class="d-flex me-2" sec:authorize="!isAuthenticated()"  style="display:flex;align-items:center;justify-content:right;font-size:0.8rem;width:400px;">
+                <div>
+                    <a href="/login">로그인</a>
+                </div>
+                &nbsp;&nbsp;
+                <div>
+                    <a href="/user/join">회원가입</a>
+                </div>
+            </div>
+            <script>
+                function logoutAndRedirect() {
+                    // 새 창 열기
+                    var newWindow = window.open('/logout', '_blank','width=450,height=450,top=1,right=100%');
+                    setTimeout(function() {
+                        // 1.5초후 창닫기
+                        newWindow.close();
+
+                        // 특정 지점으로 리다이렉션
+                        window.location.href = '/login';
+                    }, 1500);
+
+                }
+            </script>
 
         </nav>
 

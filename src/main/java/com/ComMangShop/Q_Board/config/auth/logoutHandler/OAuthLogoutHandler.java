@@ -18,10 +18,10 @@ import javax.servlet.http.HttpSession;
 
 public class OAuthLogoutHandler implements LogoutHandler {
 
-    private String naverClientId ="myCONIrrsJHFIPcgl9OQ";
+    private String naverClientId ="iWxRisgDPMNwRx4erSlZ";
 
 
-    private String naverClientSecret="ngJQs03WkY";
+    private String naverClientSecret="vYXLXZuTg7\n";
 
 
     @Override
