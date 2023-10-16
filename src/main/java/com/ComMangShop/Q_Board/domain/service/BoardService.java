@@ -117,7 +117,7 @@ public class BoardService {
 
     public Board getBoardOne(Long no) {
 
-        Optional<Board> board =    boardRepository.findById(no);
+        Optional<Board> board = boardRepository.findById(no);
         if(board.isEmpty())
             return null;
         else

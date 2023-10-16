@@ -2,6 +2,7 @@ package com.ComMangShop.Q_Board.restcontroller;
 
 
 import com.ComMangShop.Q_Board.domain.dto.ReplyDto;
+import com.ComMangShop.Q_Board.domain.dto.UserDto;
 import com.ComMangShop.Q_Board.domain.service.BoardService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,7 +88,16 @@ public class BoardRestController {
         }
     }
 
+    @RestController
+    public class UserController {
 
+        @GetMapping("/getRole")
+        public ResponseEntity<String> getRole() {
+            UserDto userDto = null;// 코드로 UserDto를 가져오는 부분;
+            String role = userDto.getRole();
+            return ResponseEntity.ok(role);
+        }
+    }
     
 
 
