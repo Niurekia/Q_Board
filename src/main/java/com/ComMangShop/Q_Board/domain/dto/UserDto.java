@@ -44,4 +44,5 @@ public class UserDto {
 
 		return user;
 	}
+	private String profileimage;
 }
