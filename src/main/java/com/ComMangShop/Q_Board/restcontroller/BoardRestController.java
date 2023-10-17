@@ -2,7 +2,8 @@ package com.ComMangShop.Q_Board.restcontroller;
 
 
 import com.ComMangShop.Q_Board.domain.dto.ReplyDto;
-import com.ComMangShop.Q_Board.domain.dto.UserDto;
+import com.ComMangShop.Q_Board.domain.entity.User;
+import com.ComMangShop.Q_Board.domain.repository.UserRepository;
 import com.ComMangShop.Q_Board.domain.service.BoardService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ public class BoardRestController {
 
     @Autowired
     private BoardService boardService;
+    @Autowired
+    private UserRepository userRepository;
 
 
 
@@ -88,16 +91,17 @@ public class BoardRestController {
         }
     }
 
-    @RestController
-    public class UserController {
+    //-------------------
+    //권한
+    //-------------------
+    @GetMapping("/getRole/{username}")
+    public String getRole(@PathVariable String username) {
 
-        @GetMapping("/getRole")
-        public ResponseEntity<String> getRole() {
-            UserDto userDto = null;// 코드로 UserDto를 가져오는 부분;
-            String role = userDto.getRole();
-            return ResponseEntity.ok(role);
-        }
+            User user = userRepository.findById(username).get();
+            String role = user.getRole();
+            return role;
     }
+
     
 
 

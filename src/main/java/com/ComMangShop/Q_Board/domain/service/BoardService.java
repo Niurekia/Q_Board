@@ -271,4 +271,8 @@ public class BoardService {
         reply.setUnlikecount(reply.getUnlikecount()+1L);
         replyRepository.save(reply);
     }
+
+    public void getRole(){
+
+    }
 }
