@@ -642,6 +642,11 @@
                             delete_btn_el.style.visibility = 'visible'; // 삭제 버튼 보임
                             update_delete_div.style.display = 'block'; // 댓글 수정,삭제 보임
                         }
+                        if(role!=="ROLE_USER"&&role!="ROLE_ADMIN"){
+                            const reply_header=document.querySelector('.reply-header');
+                            reply_header.style.display = 'none';
+                        }
+
                     }
 
                 })
@@ -650,7 +655,6 @@
 
         }
         getRole()
-
 
 
 
