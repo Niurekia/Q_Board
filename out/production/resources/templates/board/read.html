@@ -620,7 +620,7 @@
         if(username==reply.username)
             update_delete_div.style.display="block";
 
-        //권한에 따라 수정,삭제 버튼 가시화
+        //권한에 따라 댓글쓰기와 댓글&게시글 수정,삭제 버튼 가시화
         const getRole=()=>{
 
             axios.get("/board/getRole/"+username)
@@ -642,6 +642,7 @@
                             delete_btn_el.style.visibility = 'visible'; // 삭제 버튼 보임
                             update_delete_div.style.display = 'block'; // 댓글 수정,삭제 보임
                         }
+                        //회원일경우==role이 =admin과 user가 아닐 경우 댓글쓰기 숨김
                         if(role!=="ROLE_USER"&&role!="ROLE_ADMIN"){
                             const reply_header=document.querySelector('.reply-header');
                             reply_header.style.display = 'none';

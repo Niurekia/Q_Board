@@ -87,7 +87,7 @@ public class BoardRestController {
             boardService.updateReply(replyDto);
             return ResponseEntity.ok("댓글 수정 성공");
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("댓글 수정에 실패");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("댓글 수정 실패");
         }
     }
 

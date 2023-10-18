@@ -28,5 +28,7 @@ public class User {
     private String provider;
     private String providerId;
 
+    private int vouch;
+
 
 }

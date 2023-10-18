@@ -38,20 +38,20 @@
 
 
 추천 중복 금지 기능
-    vouche = stacked likecount (따봉 중복 X), 1계정 1추천 가능, 그래야만 신뢰도 혹은 보증으로 기능
+    vouch = stacked likecount (따봉 중복 X), 1계정 1추천 가능, 그래야만 신뢰도 혹은 보증으로 기능
     사실상 추천만 있어도 되니 비추버튼 굳이?
     추천여부 전용 db를 생성 ->FK로 user db, reply db에서 username, rno 불러온다
     ->그러면 칼럼으로 username, rno, thumb_up 이 구성되고
     추천을 하면 thumb_up이 true(혹은 다른거 뭐든)로 바뀌고 더 이상 추천버튼 기능X(혹은 추천 취소)
 
-vouche 기능
-    user db에 vouche칼럼 추가
+vouch 기능
+    user db에 vouch칼럼 추가
     reply db의 특정 username으로 적힌 글의 likecount 전부 합산
-    합산된 값 vouche에 저장
-    (추천 기능이 실행되는 순간 vouche가 실행되야 실시간으로 누적치를 볼 수 있을거 같은데 그 때마다 db를 조회하니 실제라면 efficiency so bad)
+    합산된 값 vouch에 저장
+    (추천 기능이 실행되는 순간 vouch가 실행되야 실시간으로 누적치를 볼 수 있을거 같은데 그 때마다 db를 조회하니 실제라면 efficiency so bad)
 
 
-db에 저장된 견적을 게시글에 불러오기 가능하게(메인에서 견적 db에 저장 구현 후)
+db에 저장된 견적을 게시글에 불러오기 가능하게(메인에서 견적 db에 저장 기능 구현 후)
 
 
 (시간남으면)reply on board 게시판에서 바로 댓글수 볼수 있다(글제목+"["+댓글수카운트+"]" 같은 느낌으로 될거 같음)
