@@ -248,7 +248,7 @@ public class BoardController {
     public String thumbsup(Long bno, Long rno)
     {
 
-        boardService.thumbsUp(rno);
+        //boardService.thumbsUp(rno);
         return "redirect:/board/read?no="+bno;
     }
     //--------------------------------

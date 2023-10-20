@@ -7,8 +7,12 @@ import com.ComMangShop.Q_Board.domain.dto.PageDto;
 import com.ComMangShop.Q_Board.domain.dto.ReplyDto;
 import com.ComMangShop.Q_Board.domain.entity.Board;
 import com.ComMangShop.Q_Board.domain.entity.Reply;
+import com.ComMangShop.Q_Board.domain.entity.Thumb_up;
+import com.ComMangShop.Q_Board.domain.entity.User;
 import com.ComMangShop.Q_Board.domain.repository.BoardRepository;
 import com.ComMangShop.Q_Board.domain.repository.ReplyRepository;
+import com.ComMangShop.Q_Board.domain.repository.Thumb_upRepository;
+import com.ComMangShop.Q_Board.domain.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +31,12 @@ public class BoardService {
 
     @Autowired
     private ReplyRepository replyRepository;
+
+    @Autowired
+    private Thumb_upRepository thumb_upRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
 
     //모든 게시물 가져오기
@@ -260,10 +270,19 @@ public class BoardService {
 
     //추천 or 비추천은 1명당 1번만 가능하게 수정
 
-    public void thumbsUp(Long rno) {
+    public void thumbsUp(Long rno, String username) {
         Reply reply =  replyRepository.findById(rno).get();
-        reply.setLikecount(reply.getLikecount()+1L);
-        replyRepository.save(reply);
+        User user = userRepository.findById(username).get();
+        Thumb_up thumb_up = thumb_upRepository.findById().get();
+
+        if(thumb_up.getThumb_up()!=true) {
+            reply.setLikecount(reply.getLikecount() + 1L);
+            replyRepository.save(reply);
+            thumb_up.setThumb_up(true);
+            thumb_upRepository.save(thumb_up);
+            //Vouch +1 기능 추가 예정
+
+        }
     }
 
     public void thumbsDown(Long rno) {
