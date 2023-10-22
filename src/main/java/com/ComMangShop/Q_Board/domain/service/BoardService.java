@@ -7,6 +7,7 @@ import com.ComMangShop.Q_Board.domain.dto.PageDto;
 import com.ComMangShop.Q_Board.domain.dto.ReplyDto;
 import com.ComMangShop.Q_Board.domain.entity.Board;
 import com.ComMangShop.Q_Board.domain.entity.Reply;
+import com.ComMangShop.Q_Board.domain.entity.Thumb_up;
 import com.ComMangShop.Q_Board.domain.entity.User;
 import com.ComMangShop.Q_Board.domain.repository.BoardRepository;
 import com.ComMangShop.Q_Board.domain.repository.ReplyRepository;
@@ -272,17 +273,32 @@ public class BoardService {
     public void thumbsUp(Long rno, String username) {
         Reply reply =  replyRepository.findById(rno).get();
         User user = userRepository.findById(username).get();
+        Thumb_up thumb_up = thumb_upRepository.find_rno_username(reply.getRno(),user.getUsername());
 
-//        Thumb_up thumb_up = thumb_upRepository.findById().get();
-//
-//        if(thumb_up.getThumb_up()!=true) {
-//            reply.setLikecount(reply.getLikecount() + 1L);
-//            replyRepository.save(reply);
-//            thumb_up.setThumb_up(true);
-//            thumb_upRepository.save(thumb_up);
-//            //Vouch +1 기능 추가 예정
-//
-//        }
+        //thumb_up  db에 현재계정과 username이 같으면서 추천을 누른 댓글의 rno와 같은 행을 찾아 추천했는지 확인
+        if(thumb_up==null){
+            thumb_up.setReply(reply);
+            thumb_up.setUser(user);
+            thumb_up.setThumb_up(true);
+            thumb_upRepository.save(thumb_up);
+        }
+        else if(thumb_up!=null){
+            if(thumb_up.getThumb_up()==true){
+                reply.setLikecount(reply.getLikecount() - 1L);
+                replyRepository.save(reply);
+                thumb_up.setThumb_up(false);
+                thumb_upRepository.save(thumb_up);
+
+            } else if(thumb_up.getThumb_up()!=true){
+                reply.setLikecount(reply.getLikecount() + 1L);
+                replyRepository.save(reply);
+                thumb_up.setThumb_up(true);
+                thumb_upRepository.save(thumb_up);
+                //Vouch +1 기능 추가 예정
+            }
+        }
+
+
     }
 
     public void thumbsDown(Long rno) {
@@ -291,7 +307,11 @@ public class BoardService {
         replyRepository.save(reply);
     }
 
-    public void getRole(){
-
+    //로그인한 계정의 권한 받아오기
+    public String getRole(String username){
+        User user = userRepository.findById(username).get();
+        String role = user.getRole();
+        return role;
     }
+
 }

@@ -620,7 +620,8 @@
         if(username==reply.username)
             update_delete_div.style.display="block";
 
-        //권한에 따라 댓글쓰기와 댓글&게시글 수정,삭제 버튼 가시화
+        //권한에 따라 게시글 수정,삭제 버튼 가시화
+
         const getRole=()=>{
 
             axios.get("/board/getRole/"+username)
@@ -640,14 +641,7 @@
                         else if (role==="ROLE_ADMIN"){//관리자일 경우 게시글,댓글의 수정,삭제버튼 보임
                             update_btn_el.style.visibility = 'visible'; // 수정 버튼 보임
                             delete_btn_el.style.visibility = 'visible'; // 삭제 버튼 보임
-                            update_delete_div.style.display = 'block'; // 댓글 수정,삭제 보임
                         }
-                        //회원일경우==role이 =admin과 user가 아닐 경우 댓글쓰기 숨김
-                        if(role!=="ROLE_USER"&&role!="ROLE_ADMIN"){
-                            const reply_header=document.querySelector('.reply-header');
-                            reply_header.style.display = 'none';
-                        }
-
                     }
 
                 })
@@ -655,9 +649,32 @@
 
 
         }
-        getRole()
+        getRole();
 
+        //권한에 따라 댓글쓰기와 댓글 수정,삭제 버튼 가시화
+        const getRole_reply=()=>{
 
+            axios.get("/board/getRole/"+username)
+                .then(response=>{
+                    console.log(response);
+                    if(response!=null){
+                        let role=response.data;
+                        console.log("role: "+role)
+
+                        //회원일경우 role이 admin과 user가 아닐 경우 댓글쓰기 숨김
+                        // if(role!=="ROLE_ADMIN"){
+                        //     const reply_header=document.querySelector('.reply-header');
+                        //     reply_header.style.display = 'none';
+                        // }
+                        if (role==="ROLE_ADMIN"){
+                            update_delete_div.style.display = 'block'; // 댓글 수정,삭제 보임
+                        }
+                    }
+
+                })
+                .catch(error=>console.log(error))
+        }
+        getRole_reply();
 
 
         // 내용 엘리먼트 추가

@@ -96,10 +96,9 @@ public class BoardRestController {
     //-------------------
     @GetMapping("/getRole/{username}")
     public String getRole(@PathVariable String username) {
-
-            User user = userRepository.findById(username).get();
-            String role = user.getRole();
-            return role;
+        String role = boardService.getRole(username);
+        System.out.println("현재 권한: "+role);
+        return role;
     }
 
     
