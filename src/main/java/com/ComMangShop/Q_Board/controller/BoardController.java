@@ -245,10 +245,11 @@ public class BoardController {
     // 개추
     //--------------------------------
     @GetMapping("/reply/thumbsup")
-    public String thumbsup(Long bno, Long rno)
+    public String thumbsup(Long bno, Long rno, String username)
     {
 
-        //boardService.thumbsUp(rno);
+        boardService.thumbsUp(rno,username);
+
         return "redirect:/board/read?no="+bno;
     }
     //--------------------------------

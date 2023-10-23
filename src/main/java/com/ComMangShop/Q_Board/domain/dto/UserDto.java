@@ -31,7 +31,7 @@ public class UserDto {
 	private String provider;
 	private String providerId;
 
-	//private Long vouch;
+	private Long vouch;
 
 	public static User dtoToEntity(UserDto dto){
 		User user=User.builder()
@@ -42,7 +42,7 @@ public class UserDto {
 				.zipcode(dto.getZipcode())
 				.addr1(dto.getAddr1())
 				.addr2(dto.getAddr2())
-				//.vouch(dto.getVouch())
+				.vouch(dto.getVouch())
 				.build();
 
 		return user;

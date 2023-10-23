@@ -277,10 +277,25 @@ public class BoardService {
 
         //thumb_up  db에 현재계정과 username이 같으면서 추천을 누른 댓글의 rno와 같은 행을 찾아 추천했는지 확인
         if(thumb_up==null){
+            thumb_up=new Thumb_up();
             thumb_up.setReply(reply);
             thumb_up.setUser(user);
             thumb_up.setThumb_up(true);
             thumb_upRepository.save(thumb_up);
+
+            reply.setLikecount(reply.getLikecount() + 1L);
+            replyRepository.save(reply);
+
+            User vouchedUser=userRepository.findById(reply.getUsername()).get();
+
+            if(vouchedUser.getVouch()==null){
+                vouchedUser.setVouch(1L);
+            }
+            else {
+                vouchedUser.setVouch(vouchedUser.getVouch() + 1L);
+            }
+
+            userRepository.save(vouchedUser);
         }
         else if(thumb_up!=null){
             if(thumb_up.getThumb_up()==true){
@@ -289,12 +304,26 @@ public class BoardService {
                 thumb_up.setThumb_up(false);
                 thumb_upRepository.save(thumb_up);
 
+                User vouchedUser=userRepository.findById(reply.getUsername()).get();
+                vouchedUser.setVouch(vouchedUser.getVouch() - 1L);
+                userRepository.save(vouchedUser);
+
             } else if(thumb_up.getThumb_up()!=true){
                 reply.setLikecount(reply.getLikecount() + 1L);
                 replyRepository.save(reply);
                 thumb_up.setThumb_up(true);
                 thumb_upRepository.save(thumb_up);
-                //Vouch +1 기능 추가 예정
+
+                User vouchedUser=userRepository.findById(reply.getUsername()).get();
+
+                if(vouchedUser.getVouch()==null){
+                    vouchedUser.setVouch(1L);
+                }
+                else {
+                    vouchedUser.setVouch(vouchedUser.getVouch() + 1L);
+                }
+
+                userRepository.save(vouchedUser);
             }
         }
 

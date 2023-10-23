@@ -694,7 +694,7 @@
         var likeLink = document.createElement("a");
         var dislikeLink = document.createElement("a");
 
-        likeLink.href = "/board/reply/thumbsup?bno="+reply.bno+"&rno=" + reply.rno;
+        likeLink.href = "/board/reply/thumbsup?bno="+reply.bno+"&rno=" + reply.rno+"&username=" + username;
         dislikeLink.href = "/board/reply/thumbsdown?bno="+reply.bno+"&rno=" + reply.rno;
 
         // 좋아요 아이콘과 개수 엘리먼트 생성

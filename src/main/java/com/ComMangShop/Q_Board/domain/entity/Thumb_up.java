@@ -17,6 +17,7 @@ public class  Thumb_up{
     //Boolean thumb_up
 
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long no;
 
     private Boolean thumb_up;
