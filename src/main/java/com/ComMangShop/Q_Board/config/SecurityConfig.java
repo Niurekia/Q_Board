@@ -67,6 +67,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			//로그인
 			.formLogin()
 			.loginPage("/login")
+			.defaultSuccessUrl("/board/read/{no}/{pageNo}", true) // true는 항상 사용자가 가려던 페이지로 리디렉션하도록 하는 옵션입니다
 			.successHandler(new CustomLoginSuccessHandler())					//ROLE_USER -> user페이지 / ROLE_MEMBER -> member페이지
 			.failureHandler(new CustomAuthenticationFailureHandler())
 
@@ -97,6 +98,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			//OAUTH2
 				.oauth2Login()
+				.defaultSuccessUrl("/board/read/{no}/{pageNo}", true)
 				.userInfoEndpoint()
 				.userService(principalDetailsOAuth2Service);
 

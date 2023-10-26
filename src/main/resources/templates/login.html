@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,21 +8,20 @@
     <!-- BS5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-   
+
     <!-- axios -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
 
     <!-- google icon   -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <style>
         .material-symbols-outlined {
-          font-variation-settings:
-          'FILL' 0,
-          'wght' 400,
-          'GRAD' 0,
-          'opsz' 24;
-          margin-right:5px;
+            font-variation-settings:
+                    'FILL' 0,
+                    'wght' 400,
+                    'GRAD' 0,
+                    'opsz' 24;
+            margin-right: 5px;
         }
     </style>
 
@@ -30,205 +29,190 @@
         *{}
         a{
             text-decoration: none;
-            color:gray;
+            color: gray;
         }
         body{
-            
-          
         }
 
         .wrapper{
-          
         }
 
         .wrapper::after{
-            content:'';
+            content: '';
             background-color: lightgray;
-            position:fixed;
-            left:0px;top:0px;
-            width : 100vw;
-            height:100vh;
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100vw;
+            height: 100vh;
             opacity: 0.5;
-            z-index:1;
-        
-
+            z-index: 1;
         }
-  
+
         .wrapper>header{
-          
         }
+
         .wrapper>header>.top-header{
-
         }
+
         .wrapper>header>nav{
-            position:relative;
-            z-index:2;
+            position: relative;
+            z-index: 2;
         }
-        
-        .wrapper>main{}
-        .wrapper>main>section{}
-        
-  
 
-  
+        .wrapper>main{
+        }
+
+        .wrapper>main>section{
+        }
 
         .wrapper>main>section .login{
-          text-decoration: none;
-          text-align:right;
-          color:gray;
-          
+            text-decoration: none;
+            text-align: right;
+            color: gray;
         }
+
         .wrapper>main>section .id_login_block{
-
-            position:relative;
-            z-index:2;
-            margin-top:200px;
-  
+            position: relative;
+            z-index: 2;
+            margin-top: 200px;
         }
 
-        .wrapper>main>section>.id_login_block>.header
-        {
-            display:flex;
+        .wrapper>main>section>.id_login_block>.header{
+            display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom:10px;
-           
+            margin-bottom: 10px;
         }
 
-        .wrapper>main>section>.id_login_block>.body
-        {
-            display:flex;
+        .wrapper>main>section>.id_login_block>.body{
+            display: flex;
             justify-content: center;
             align-items: center;
-           
         }
+
         .wrapper>main>section>.id_login_block>.body form{
-            width : 350px;
+            width: 350px;
         }
+
         .wrapper>main>section>.id_login_block>.body form>*{
-            margin : 5px;
+            margin: 5px;
         }
 
-        .wrapper>main>section   .join_req {
-            text-align:right;
-            font-size:0.8rem;
+        .wrapper>main>section .join_req{
+            text-align: right;
+            font-size: 0.8rem;
+        }
 
+        .wrapper>main>section .etc_req{
+            text-align: center;
+            font-size: 0.9rem;
         }
-        .wrapper>main>section  .etc_req{
-            text-align:center;
-            font-size:0.9rem;
-        }
+
         .wrapper>main>section .oauth_icon{
-            display:flex;
-            justify-content:center;
-            align-items : center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+
         .wrapper>main>section .oauth_icon img{
-            display:block;
-
-            width : 45px;
-            height : 45px;
-            margin : 5px;
-            border : 50%;
-            margin-right:15px;
+            display: block;
+            width: 45px;
+            height: 45px;
+            margin: 5px;
+            border: 50%;
+            margin-right: 15px;
         }
+
         .google_icon{
-            width : 55px;
-            height : 55px;
+            width: 55px;
+            height: 55px;
         }
+
         .google_icon>*{
-            margin-right:10px;
+            margin-right: 10px;
         }
 
-        .wrapper>footer{}
-        
+        .wrapper>footer{
+        }
 
-        
     </style>
 </head>
 <body>
 
+<div class="wrapper">
+    <header>
+        <div class="top--header"></div>
 
-    <div class="wrapper">
-        <header>
-            <div class="top--header"></div>
-            
-            <!-- NAV -->    
-            <nav class="navbar navbar-expand-lg navbar-light bg-success p-3 mb-1"  >
-
-        </header>
-        <main>
-
-            <section>       
-               <!-- ID 로그인 -->
-                <div class="id_login_block">
-                    <div class="header">
-                        <h3>LOGIN</h3>
-                    </div>
-                    <div class="body">    
-                       
-                        <form name="joinform" action="/login" method="post" onsubmit="return false">
-                            <div class="m-2">
-                            
-                            <input name="username" placeholder="INSERT USERNAME" class="form-control"> 
-                            </div>
-                            <div class="m-2">
-                            
-                            <input name="password" type="password"  placeholder="INSERT PASSWORD" class="form-control">
-                            </div>
-                            <div class="m-2 form-check" >   
-                                <input type="checkbox" class="form-check-input" id="rememberMe" name="remember-me"/>
-                                <label class="form-check-label" for="rememberMe">로그인 상태를 유지</label>          
-                            </div>
-                            <div>
-                                <button class="btn btn-success w-100"  onclick="isValid()">로그인</button>
-                            </div>
-
-                            <div class="m-2 join_req" >
-                            <a href="/user/join"  >회원가입</a>
-                            </div>
-
-                            <div class="m-2 oauth_icon">
-                                <a href="/oauth2/authorization/kakao"> <img src="/images/kakao_icon.webp" /></a>
-                                <a href="/oauth2/authorization/google"> <img src="/images/google_icon_2.png" class="google_icon" /></a>
-                                <a href="/oauth2/authorization/naver"> <img src="/images/naver_icon.png" /></a>
-                            </div>
-
-                            <div class="m-2 etc_req" >
-                                <a href="javascript:void(0)"  >아이디 찾기</a>
-                                &nbsp;&nbsp;
-                                |
-                                &nbsp;&nbsp;
-                                <a href="javascript:void(0)"  >패스워드 찾기</a>     
-                            </div>
-                        </form>
-                    </div>
-
+        <!-- NAV -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-success p-3 mb-1"></nav>
+    </header>
+    <main>
+        <section>
+            <!-- ID 로그인 -->
+            <div class="id_login_block">
+                <div class="header">
+                    <h3>LOGIN</h3>
                 </div>
-            </section>
-
-            
-        </main>
-        <footer>
-
-
-        </footer>
-
-    </div>
-    
+                <div class="body">
+                    <form name="joinform" action="/login" method="post">
+                        <div class="m-2">
+                            <input name="username" placeholder="INSERT USERNAME" class="form-control">
+                        </div>
+                        <div class="m-2">
+                            <input name="password" type="password" placeholder="INSERT PASSWORD" class="form-control">
+                        </div>
+                        <div class="m-2 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe" name="remember-me"/>
+                            <label class="form-check-label" for="rememberMe">로그인 상태를 유지</label>
+                        </div>
+                        <div>
+                            <button class="btn btn-success w-100" onclick="isValid()">로그인</button>
+                        </div>
+                        <div class="m-2 join_req">
+                            <a href="/user/join">회원가입</a>
+                        </div>
+                        <div class="m-2 oauth_icon">
+                            <a href="/oauth2/authorization/kakao"><img src="/images/kakao_icon.webp" /></a>
+                            <a href="/oauth2/authorization/google"><img src="/images/google_icon_2.png" class="google_icon" /></a>
+                            <a href="/oauth2/authorization/naver"><img src="/images/naber_icon.png" /></a>
+                        </div>
+                        <div class="m-2 etc_req">
+                            <a href="javascript:void(0)">아이디 찾기</a>
+                            &nbsp;&nbsp; |
+                            &nbsp;&nbsp;
+                            <a href="javascript:void(0)">패스워드 찾기</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+    </footer>
+</div>
 <script>
- 		const isValid = ()=>{
- 			const form = document.joinform;
- 			if(form.username.value.trim()==""){
- 				alert("USERNAME을 입력하세요.");
- 				return;
- 			}
- 			if(form.password.value.trim()==""){
- 				alert("PASSWORD을 입력하세요.");
- 				return;
- 			}
- 			form.submit();
- 		}
- </script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.joinform;
+
+        const isValid = () => {
+            if (form.username.value.trim() === "") {
+                alert("USERNAME을 입력하세요.");
+                return;
+            }
+            if (form.password.value.trim() === "") {
+                alert("PASSWORD을 입력하세요.");
+                return;
+            }
+
+            form.submit();
+        }
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            isValid();
+        });
+    });
+</script>
 </body>
 </html>

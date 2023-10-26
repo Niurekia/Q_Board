@@ -38,10 +38,7 @@ public class UserController {
 
 
 
-	@GetMapping("/login")
-	public void login_get(){
 
-	}
 	@GetMapping("/join")
 	public void join_get() {
 		log.info("GET /join");

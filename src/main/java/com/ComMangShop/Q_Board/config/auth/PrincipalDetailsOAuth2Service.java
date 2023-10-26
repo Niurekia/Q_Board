@@ -75,9 +75,9 @@ public class PrincipalDetailsOAuth2Service extends DefaultOAuth2UserService   im
         //OAuth2UserInfo 확인
         String provider  = oAuth2UserInfo.getProvider();
         String providerId = oAuth2UserInfo.getProviderId();
-        String username = provider+"_"+providerId+"@example.com";    //  /
-        String password = passwordEncoder.encode("1234");
         String email = oAuth2UserInfo.getEmail();
+        String username = provider+"_"+email;    //  /
+        String password = passwordEncoder.encode("1234");
         String role = "ROLE_USER";
 
         //DB 저장
@@ -100,13 +100,15 @@ public class PrincipalDetailsOAuth2Service extends DefaultOAuth2UserService   im
         //AccessToken 정보를 Authentication에 저장하기
         PrincipalDetails principalDetails = new PrincipalDetails();
         principalDetails.setAttributes(oauth2User.getAttributes());
+
+        User user = optional.get();
         UserDto dto = new UserDto();
-        dto.setUsername(username);
-        dto.setPassword(password);
-        dto.setRole(role);
+        dto.setUsername(user.getUsername());
+        dto.setPassword(user.getPassword());
+        dto.setRole(user.getRole());
         //OAUTH2 LOGOUT
-        dto.setProvider(provider);
-        dto.setProviderId(providerId);
+        dto.setProvider(user.getProvider());
+        dto.setProviderId(user.getProviderId());
         principalDetails.setUser(dto);
         principalDetails.setAccessToken(userRequest.getAccessToken().getTokenValue());
 
